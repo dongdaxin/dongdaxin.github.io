@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>ES6ES7ES8 | Hexo</title>
+  <meta name="description" content="ES61、let &amp; const &amp; 顶层对象 let 和var类似，但只在let命令所在的代码块内有效（没有变量提升）(暂时性死区)（不允许重复声明） 用let声明的变量，在声明之前使用都会报错 const 声明一个只读的常量，一旦声明，常量的值就不能改变。（不允许重复声明）  1234const foo &#x3D; &amp;#123;&amp;#125;foo.a &#x3D; 3; &#x2F;&#x2F; 可以foo &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6ES7ES8">
+<meta property="og:url" content="http://example.com/2020/08/18/ES6ES7ES8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ES61、let &amp; const &amp; 顶层对象 let 和var类似，但只在let命令所在的代码块内有效（没有变量提升）(暂时性死区)（不允许重复声明） 用let声明的变量，在声明之前使用都会报错 const 声明一个只读的常量，一旦声明，常量的值就不能改变。（不允许重复声明）  1234const foo &#x3D; &amp;#123;&amp;#125;foo.a &#x3D; 3; &#x2F;&#x2F; 可以foo &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-18T12:09:38.000Z">
+<meta property="article:modified_time" content="2020-09-01T02:44:12.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://example.com/2020/08/18/ES6ES7ES8/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/react/">react</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/react/%E4%B8%83%E7%89%9B%E4%BA%91/">七牛云</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/vue/%E5%A3%B0%E7%BD%91/">声网</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E5%B7%A7/html5/">html5</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%B3%95/">语法</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/" rel="tag">api</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/election/" rel="tag">election</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/" rel="tag">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/router/" rel="tag">router</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuex/" rel="tag">vuex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webSocket/" rel="tag">webSocket</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BC%98%E5%8C%96/" rel="tag">优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A3%B0%E7%BD%91/" rel="tag">声网</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E5%B7%A7/" rel="tag">技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%84%E5%BB%BA/" rel="tag">构建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%AD%E6%B3%95/" rel="tag">语法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B5%E9%9D%A2/" rel="tag">页面</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Markdown/" style="font-size: 13px;">Markdown</a> <a href="/tags/api/" style="font-size: 13.33px;">api</a> <a href="/tags/election/" style="font-size: 13px;">election</a> <a href="/tags/https/" style="font-size: 13px;">https</a> <a href="/tags/js/" style="font-size: 13px;">js</a> <a href="/tags/mac/" style="font-size: 13px;">mac</a> <a href="/tags/react/" style="font-size: 13px;">react</a> <a href="/tags/router/" style="font-size: 13px;">router</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/vuex/" style="font-size: 13px;">vuex</a> <a href="/tags/web/" style="font-size: 13.67px;">web</a> <a href="/tags/webSocket/" style="font-size: 13.33px;">webSocket</a> <a href="/tags/webpack/" style="font-size: 13px;">webpack</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 13px;">优化</a> <a href="/tags/%E5%A3%B0%E7%BD%91/" style="font-size: 13px;">声网</a> <a href="/tags/%E6%8A%80%E5%B7%A7/" style="font-size: 13px;">技巧</a> <a href="/tags/%E6%9E%84%E5%BB%BA/" style="font-size: 13px;">构建</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13px;">正则</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 13px;">语法</a> <a href="/tags/%E9%A1%B5%E9%9D%A2/" style="font-size: 13px;">页面</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/20/%E5%86%8D%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%AA/" class="title">再测试一个</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-20T06:54:51.000Z" itemprop="datePublished">2022-07-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/20/%E6%B5%8B%E8%AF%95/" class="title">测试</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-20T06:08:27.000Z" itemprop="datePublished">2022-07-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/19/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-19T07:06:17.039Z" itemprop="datePublished">2022-07-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/12/03/%E8%8A%82%E6%B5%81/" class="title">节流</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-12-03T07:42:14.000Z" itemprop="datePublished">2020-12-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/12/03/%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%AD%A3%E5%88%99/" class="title">常用的一些正则</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-12-03T07:32:14.000Z" itemprop="datePublished">2020-12-03</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6"><span class="toc-number">1.</span> <span class="toc-text">ES6</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81let-amp-const-amp-%E9%A1%B6%E5%B1%82%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、let &amp; const &amp; 顶层对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E7%BB%93%E6%9E%84%E8%B5%8B%E5%80%BC"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、结构赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84-%E6%96%B9%E6%B3%95%E5%92%8C%E6%89%A9%E5%B1%95"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、字符串的 方法和扩展</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E6%AD%A3%E5%88%99"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、正则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81Number%E7%9A%84%E6%96%B9%E6%B3%95%E5%92%8C%E6%89%A9%E5%B1%95"><span class="toc-number">1.0.5.</span> <span class="toc-text">5、Number的方法和扩展</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-ES6ES7ES8" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES6ES7ES8
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/08/18/ES6ES7ES8/" class="article-date">
+	  <time datetime="2020-08-18T12:09:38.000Z" itemprop="datePublished">2020-08-18</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/web/" rel="tag">web</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/08/18/ES6ES7ES8/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <hr>
+<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><h4 id="1、let-amp-const-amp-顶层对象"><a href="#1、let-amp-const-amp-顶层对象" class="headerlink" title="1、let &amp; const &amp; 顶层对象"></a>1、let &amp; const &amp; 顶层对象</h4><ul>
+<li><code>let</code> 和var类似，但只在let命令所在的代码块内有效（没有变量提升）(暂时性死区)（不允许重复声明）<br> <strong>用let声明的变量，在声明之前使用都会报错</strong></li>
+<li><code>const</code> 声明一个只读的常量，一旦声明，常量的值就不能改变。（不允许重复声明）  <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">const foo = &#123;&#125;<br>foo.a = <span class="hljs-number">3</span>; // 可以<br>foo = &#123;a:<span class="hljs-number">3</span>&#125;; // 不行  指向的地址不能改变<br>// 可以使用<span class="hljs-keyword">Object</span>.<span class="hljs-keyword">freeze</span>(&#123;&#125;) 冻结对象<br></code></pre></td></tr></table></figure></li>
+<li><code>顶层对象</code> window global <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;<br><span class="hljs-variable language_">window</span>.<span class="hljs-property">a</span> <span class="hljs-comment">// 1</span><br><span class="hljs-keyword">let</span> b == <span class="hljs-number">2</span>;<br><span class="hljs-variable language_">window</span>.<span class="hljs-property">b</span> <span class="hljs-comment">// undefined</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="2、结构赋值"><a href="#2、结构赋值" class="headerlink" title="2、结构赋值"></a>2、结构赋值</h4><ul>
+<li>数组的结构赋值<br>   本质上，只要等号两边的模式相同，左边的变量就会赋予对应的值。如果结构不能成，变量的值就等于undefined（如果等号右边不是数组将会报错）   <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">let [foo,<span class="hljs-string">[[bar],baz]]</span> = [<span class="hljs-number">1</span>,<span class="hljs-string">[[2],3]]</span>;<br>foo // <span class="hljs-number">1</span><br>bar // <span class="hljs-number">2</span><br>baz // <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+   可以给默认值   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">let [foo = <span class="hljs-string">&#x27;a&#x27;</span>] = [];<br>foo <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;a&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li>对象的结构赋值<br>   变量必须与属性同名才能取到正确的值   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">let &#123;foo,baz&#125; = &#123;foo:<span class="hljs-string">&#x27;a&#x27;</span>,bar:<span class="hljs-string">&#x27;b&#x27;</span>&#125;;<br>foo <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;a&#x27;</span><br>baz <span class="hljs-regexp">//</span> undefined<br></code></pre></td></tr></table></figure>
+   也可以嵌套结构   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs awk">let obj = &#123;<br>    p:[<br>        <span class="hljs-string">&#x27;a&#x27;</span>,<br>        &#123;y:<span class="hljs-string">&#x27;b&#x27;</span>&#125;<br>    ]<br>&#125;;<br>let &#123;p:[foo,&#123;y&#125;]&#125; = obj;<br>foo <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;a&#x27;</span><br>y <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;b&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li>字符串的结构赋值   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">let [a,b,c,d,e] = <span class="hljs-string">&#x27;hello&#x27;</span>;<br>a <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;h&#x27;</span><br>b <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;e&#x27;</span><br></code></pre></td></tr></table></figure>
+   也可以对属性结构赋值   <figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs hsp">let &#123;<span class="hljs-keyword">length</span> : len&#125; = <span class="hljs-string">&#x27;hello&#x27;</span><span class="hljs-comment">;</span><br><span class="hljs-keyword">length</span> <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure></li>
+<li>数值和布尔值的结构赋值<br>   如果等号右边的是数值和布尔，则会先转为对象   <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-keyword">let</span> &#123;<span class="hljs-built_in">toString</span> : s&#125; = <span class="hljs-number">123</span>;<br><span class="hljs-attr">s</span> === Number.prototype.<span class="hljs-built_in">toString</span> // <span class="hljs-literal">true</span><br><span class="hljs-keyword">let</span> &#123;<span class="hljs-built_in">toString</span> : s&#125; = <span class="hljs-literal">true</span>;<br><span class="hljs-attr">s</span> === Boolean.prototype.<span class="hljs-built_in">toString</span> // <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+   undefined 和 null 无法转为对象，所以对他们进行结构赋值会报错</li>
+<li>函数参数的结构赋值   <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stylus">function <span class="hljs-built_in">add</span>(<span class="hljs-selector-attr">[x,y]</span>)&#123;<br>    return x + y<br>&#125;<br><span class="hljs-function"><span class="hljs-title">add</span><span class="hljs-params">([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])</span></span> <span class="hljs-comment">// 3</span><br><br><span class="hljs-selector-attr">[[1,2]</span>,<span class="hljs-selector-attr">[3,4]</span>]<span class="hljs-selector-class">.map</span>((<span class="hljs-selector-attr">[a,b]</span>)=&gt;a+b) <span class="hljs-comment">// [3,7]</span><br></code></pre></td></tr></table></figure>
+   <strong>结构赋值少使用圆括号，会报错</strong></li>
+</ul>
+<hr>
+<h4 id="3、字符串的-方法和扩展"><a href="#3、字符串的-方法和扩展" class="headerlink" title="3、字符串的 方法和扩展"></a>3、字符串的 方法和扩展</h4><table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">anchor</td>
+<td align="left">创建一个 <code>&lt;a name=&quot;传入的参数&quot;&gt;字符串&lt;/a&gt;</code></td>
+</tr>
+<tr>
+<td align="left">big</td>
+<td align="left">创建一个<code>&lt;big&gt;字符串&lt;/big&gt;</code>大号字体显示</td>
+</tr>
+<tr>
+<td align="left">charAt</td>
+<td align="left">返回指定位置的字符</td>
+</tr>
+<tr>
+<td align="left">charCodeAt</td>
+<td align="left">返回指定位置的Unicode编码</td>
+</tr>
+<tr>
+<td align="left">concat</td>
+<td align="left">拼接字符串</td>
+</tr>
+<tr>
+<td align="left">fromCharCode</td>
+<td align="left">从字符编码创建一个字符串<code>String.fromCharCode(102)</code> &#x3D;&#x3D; f</td>
+</tr>
+<tr>
+<td align="left">indexOf</td>
+<td align="left">检索字符串 返回lin</td>
+</tr>
+<tr>
+<td align="left">lastIndexOf</td>
+<td align="left">从后检索字符串 返回lin</td>
+</tr>
+<tr>
+<td align="left">italics</td>
+<td align="left"><code>&lt;i&gt;字符串&lt;/i&gt;</code></td>
+</tr>
+<tr>
+<td align="left">link</td>
+<td align="left"><code>&lt;a href=&quot;参数&quot;&gt;字符串&lt;/a&gt;</code></td>
+</tr>
+<tr>
+<td align="left">localeCompare</td>
+<td align="left">用本地特定的顺序来比较两个字符串</td>
+</tr>
+<tr>
+<td align="left">match</td>
+<td align="left">正则表达式匹配 返回array</td>
+</tr>
+<tr>
+<td align="left">replace</td>
+<td align="left">替换与正则表达式匹配的子串</td>
+</tr>
+<tr>
+<td align="left">search</td>
+<td align="left">检索与正则表达式相匹配的值 返回lin</td>
+</tr>
+<tr>
+<td align="left">slice</td>
+<td align="left">提取字符串的片段，并在心的字符串中返回被提取的部分（截取）</td>
+</tr>
+<tr>
+<td align="left">small</td>
+<td align="left"><code>&lt;small&gt;字符串&lt;/small&gt;</code>小一号字体显示</td>
+</tr>
+<tr>
+<td align="left">split</td>
+<td align="left">把字符串分割为字符串数组</td>
+</tr>
+<tr>
+<td align="left">strike</td>
+<td align="left"><code>&lt;strike&gt;字符串&lt;/strike&gt;</code> 删除线</td>
+</tr>
+<tr>
+<td align="left">sub</td>
+<td align="left"><code>&lt;sub&gt;字符串&lt;/sub&gt;</code> 下标</td>
+</tr>
+<tr>
+<td align="left">sup</td>
+<td align="left"><code>&lt;sup&gt;字符串&lt;/sup&gt;</code> 上标</td>
+</tr>
+<tr>
+<td align="left">substr</td>
+<td align="left">从第几个索引开始提取几个</td>
+</tr>
+<tr>
+<td align="left">substring</td>
+<td align="left">提取字符串中两个指定索引号之间的字符</td>
+</tr>
+<tr>
+<td align="left">toLocaleLowerCase</td>
+<td align="left">把字符串转换为小写</td>
+</tr>
+<tr>
+<td align="left">toLocaleUpperCase</td>
+<td align="left">把字符串转换为大些</td>
+</tr>
+<tr>
+<td align="left">toLowerCase</td>
+<td align="left">把字符串转换为小写</td>
+</tr>
+<tr>
+<td align="left">toUpperCase</td>
+<td align="left">把字符串转换为大些</td>
+</tr>
+<tr>
+<td align="left">toString</td>
+<td align="left">返回字符串</td>
+</tr>
+<tr>
+<td align="left">valueOf</td>
+<td align="left">返回某个字符串对象的原始值</td>
+</tr>
+</tbody></table>
+<hr>
+<ul>
+<li>字符的Unicode表示法   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-string">&#x27;\z&#x27;</span> === <span class="hljs-string">&#x27;z&#x27;</span> <span class="hljs-regexp">//</span> true<br><span class="hljs-string">&#x27;\172&#x27;</span> === <span class="hljs-string">&#x27;z&#x27;</span> <span class="hljs-regexp">//</span> true<br><span class="hljs-string">&#x27;\x7A&#x27;</span> === <span class="hljs-string">&#x27;z&#x27;</span> <span class="hljs-regexp">//</span> true<br><span class="hljs-string">&#x27;\u007A&#x27;</span> === <span class="hljs-string">&#x27;z&#x27;</span> <span class="hljs-regexp">//</span> true<br><span class="hljs-string">&#x27;\u&#123;7A&#125;&#x27;</span> === <span class="hljs-string">&#x27;z&#x27;</span> <span class="hljs-regexp">//</span> true<br></code></pre></td></tr></table></figure></li>
+<li>字符串的遍历器接口<br>   字符串可以被 for…of 循环遍历   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-keyword">for</span>(let a of <span class="hljs-string">&#x27;foo&#x27;</span>)&#123;<br>    console.log(a)<br>&#125;<br><span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;f&#x27;</span><br><span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;o&#x27;</span><br><span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;o&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li>模板字符串   <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">let a</span> = <span class="hljs-string">`$&#123;b&#125;eee`</span>;<br></code></pre></td></tr></table></figure>
+ <strong><code>.trim()</code> 可以消除换行</strong></li>
+</ul>
+<h4 id="4、正则"><a href="#4、正则" class="headerlink" title="4、正则"></a>4、正则</h4><ul>
+<li><p>1、RegExp 构造函数</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> regex = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-string">&#x27;xyz&#x27;</span>,<span class="hljs-string">&#x27;i&#x27;</span>)<br><span class="hljs-keyword">let</span> regex = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-regexp">/xyz/</span>,<span class="hljs-string">&#x27;i&#x27;</span>)<br><span class="hljs-keyword">let</span> regex = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-regexp">/xyz/i</span>)<br><span class="hljs-keyword">let</span> regex = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-regexp">/xyz/ig</span>,<span class="hljs-string">&#x27;i&#x27;</span>) <span class="hljs-comment">// ig 会被第二个参数覆盖</span><br></code></pre></td></tr></table></figure></li>
+<li><p>2、字符串的正则方法</p>
+<ul>
+<li>match</li>
+<li>replace</li>
+<li>search</li>
+<li>split</li>
+</ul>
+</li>
+<li><p>3、u 修饰符<br>   Unicode模式 （汉字的时候注意）<br> <strong><code>/\,/u</code> &#x2F;&#x2F;报错</strong></p>
+</li>
+<li><p>4、RegExp.prototype.unicode<br>   是否设置了u修饰符；</p>
+   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">const r1 = <span class="hljs-regexp">/hello/</span>;<br>const r2 = <span class="hljs-regexp">/hello/u</span>;<br><br>r1.unicode <span class="hljs-regexp">//</span> false<br>r2.unicode <span class="hljs-regexp">//</span> true<br></code></pre></td></tr></table></figure></li>
+<li><p>5、y 修饰符<br>   “粘连”修饰符<br>   y跟g一样，y修饰符确保匹配必须从第一位值开始<br>   g会忽略非法字符，y不会</p>
+</li>
+<li><p>6、RegExp.prototype.sticky<br>   是否这是了y修饰符</p>
+   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">let r = <span class="hljs-regexp">/hello/y</span>;<br>r.sticky <span class="hljs-regexp">//</span> true<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>7、RegExp.prototype.flags</p>
+   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/abc/ig</span>.source <span class="hljs-regexp">//</span> 返回正则表达式正文 <span class="hljs-string">&#x27;abc&#x27;</span><br><span class="hljs-regexp">/abc/</span>.ig.flags <span class="hljs-regexp">//</span> 返回正则表达式修饰符 <span class="hljs-string">&#x27;ig&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>8、s 修饰符：dotAll 模式<br>   正则表达式中，点（.）是一个特殊字符，代表任意的单个字符，但是有两个   例外。一个是四个字节的 UTF-16 字符，这个可以用u修饰符解决；另一个   是行终止符（line terminator character）。</p>
+   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/foo.bar/</span>.test(<span class="hljs-string">&#x27;foo\nbar&#x27;</span>) <span class="hljs-regexp">//</span> false<br><span class="hljs-regexp">/foo.bar/</span>s.test(<span class="hljs-string">&#x27;foo\nbar&#x27;</span>) <span class="hljs-regexp">//</span> true<br></code></pre></td></tr></table></figure>
+<p> <strong>这被称为dotAll模式，即点（dot）代表一切字符。所以，正则表达式还引入了一个dotAll属性，返回一个布尔值，表示该正则表达式是否处在dotAll模式。</strong></p>
+   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">const re = <span class="hljs-regexp">/foo.bar/</span>s;<br>re.test(<span class="hljs-string">&#x27;foo\nbar&#x27;</span>) <span class="hljs-regexp">//</span> true<br>re.dotAll <span class="hljs-regexp">//</span> true<br>re.flags <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;s&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>9、后行断言</p>
+</li>
+<li><p>10、Unicode 属性类</p>
+</li>
+<li><p>11、具名匹配<br>   正则表达式使用圆括号进行组匹配<br>   ES2018 引入类 具名匹配，允许每个组匹配质地ing一个名字，即便于阅读代码，又便于引用</p>
+   <figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">let re = /(?<span class="hljs-tag">&lt;<span class="hljs-name">year</span>&gt;</span>\d</span><span class="hljs-template-variable">&#123;4&#125;</span><span class="language-xml">)=(?<span class="hljs-tag">&lt;<span class="hljs-name">month</span>&gt;</span>\d</span><span class="hljs-template-variable">&#123;2&#125;</span><span class="language-xml">)-(?<span class="hljs-tag">&lt;<span class="hljs-name">day</span>&gt;</span>\d</span><span class="hljs-template-variable">&#123;2&#125;</span><span class="language-xml">)/u;</span><br><span class="language-xml">&#x27;2015-01-02&#x27;.replace(re,&#x27;$<span class="hljs-tag">&lt;<span class="hljs-name">day</span>&gt;</span>/$<span class="hljs-tag">&lt;<span class="hljs-name">month</span>&gt;</span>/$<span class="hljs-tag">&lt;<span class="hljs-name">year</span>&gt;</span>&#x27;) // &#x27;02/01/2015&#x27;</span><br></code></pre></td></tr></table></figure>
+<p> <strong>replace 方法的第二个参数也可以是函数</strong></p>
+ <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-string">&#x27;2015-01-02&#x27;</span>.<span class="hljs-built_in">replace</span>(re,(<br>    matched, <span class="hljs-comment">// 整个匹配的结果 2015-01-02</span><br>    capture1， <span class="hljs-comment">// 第一个组匹配 2015</span><br>    capture2，<span class="hljs-comment">// 第二个组匹配 01</span><br>    capture3， <span class="hljs-comment">// 第三个组匹配 02</span><br>    position， <span class="hljs-comment">// 匹配开始的位置 0</span><br>    s，<span class="hljs-comment">// 原字符串</span><br>    groups <span class="hljs-comment">// 具名组构成的一个对象 &#123;year,month,day&#125;</span><br>) =&gt; &#123;<br>    let &#123;<span class="hljs-built_in">day</span>,<span class="hljs-built_in">month</span>,<span class="hljs-built_in">year</span>&#125; = groups;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">day</span>&#125;</span>/<span class="hljs-subst">$&#123;<span class="hljs-built_in">month</span>/$&#123;<span class="hljs-built_in">year</span>&#125;</span>&#125;`</span><br>&#125;)<br></code></pre></td></tr></table></figure></li>
+<li><p>12、正则匹配索引<br>   在exec（）方法的返回结果上加indices属性，在这个属性上面可以那道匹配开始位置和结束位置。</p>
+   <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs oxygene"><span class="hljs-keyword">const</span> text = <span class="hljs-string">&#x27;zabbcdef&#x27;</span><span class="hljs-punctuation">;</span><br><span class="hljs-keyword">const</span> re = /eb/<span class="hljs-punctuation">;</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">result</span> = re.exec(text)<span class="hljs-punctuation">;</span><br><br><span class="hljs-keyword">result</span>.index <span class="hljs-comment">// 1</span><br><span class="hljs-keyword">result</span>.indices <span class="hljs-comment">// [[1,3]]  每组开始结束的位置</span><br></code></pre></td></tr></table></figure></li>
+<li><p>13、 String.prototype.matchAll()<br>   ES2020 增加了 matchAll方法，可以一次性去除所有匹配。返回的是一个遍历器（Iterator），而不是数组。可以使用for…ofxunhuan取出。相对于返回数组，返回遍历器的好处在于，如果匹配结果是一个很大的数组，那么遍历器比较节省资源。</p>
+   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs awk">const string = <span class="hljs-string">&#x27;test1test2test3&#x27;</span>;<br>const regex = <span class="hljs-regexp">/t(e)(st(\d?))/g</span>;<br><br><span class="hljs-keyword">for</span>( const match of string.matchAll(regex))&#123;<br>    console.log(match)<br>&#125;<br><span class="hljs-regexp">//</span> [<span class="hljs-string">&#x27;test1&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;st1&#x27;</span>,<span class="hljs-string">&#x27;1&#x27;</span>,index:<span class="hljs-number">0</span>,input:<span class="hljs-string">&#x27;test1test2test3&#x27;</span>]<br><span class="hljs-regexp">//</span> [<span class="hljs-string">&#x27;test2&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;st2&#x27;</span>,<span class="hljs-string">&#x27;1&#x27;</span>,index:<span class="hljs-number">5</span>,input:<span class="hljs-string">&#x27;test1test2test3&#x27;</span>]<br><span class="hljs-regexp">//</span> [<span class="hljs-string">&#x27;test3&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;st3&#x27;</span>,<span class="hljs-string">&#x27;1&#x27;</span>,index:<span class="hljs-number">10</span>,input:<span class="hljs-string">&#x27;test1test2test3&#x27;</span>]<br><br></code></pre></td></tr></table></figure>
+<ul>
+<li>遍历器转为数组的方式非常简单，使用…运算符和Array.from（）方法就可以了 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-literal">[<span class="hljs-operator">...</span><span class="hljs-identifier">string</span>.<span class="hljs-identifier">matchAll</span>(<span class="hljs-identifier">regex</span>)]</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Array</span>.</span></span>from(<span class="hljs-built_in">string</span>.<span class="hljs-keyword">match</span><span class="hljs-constructor">All(<span class="hljs-params">regex</span>)</span>)<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="5、Number的方法和扩展"><a href="#5、Number的方法和扩展" class="headerlink" title="5、Number的方法和扩展"></a>5、Number的方法和扩展</h4><table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">toString</td>
+<td align="left">把数字转换为字符串，使用指定的基数</td>
+</tr>
+<tr>
+<td align="left">toLocaleString</td>
+<td align="left">把数字转换为字符串，使用本地数字格式顺序</td>
+</tr>
+<tr>
+<td align="left">toFixed</td>
+<td align="left">把数字转换为字符串，结果的小数点后又自定位数的数字</td>
+</tr>
+<tr>
+<td align="left">toExponential</td>
+<td align="left">转换为指定的计数法（转为科学计数法 1.2   +2）参数-位数 1～20</td>
+</tr>
+<tr>
+<td align="left">toPrecision</td>
+<td align="left">把数字格式化为指定的长度（后面给加小数点）</td>
+</tr>
+<tr>
+<td align="left">valueOf</td>
+<td align="left">返回一个Number对象的基本数字值</td>
+</tr>
+</tbody></table>
+<hr>
+<ul>
+<li>1、 二进制八进制表示法<br>   二进制前缀<strong>0b(或0B)</strong><br>   八进制前缀<strong>0o(或0O)</strong>   <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-number">0b11110111</span> === <span class="hljs-number">503</span> // <span class="hljs-literal">true</span><br><span class="hljs-number">0o767</span> === <span class="hljs-number">503</span> // <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+   <strong>二进制和八进制转换十进制使用Number</strong>   <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs maxima">Number(&#x27;<span class="hljs-number">0b111</span>&#x27;) // <span class="hljs-number">7</span><br>Number(&#x27;<span class="hljs-number">0o10</span>&#x27;) // <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure></li>
+<li>2、Number.isFinite(),Number.isNaN()<br>   <code>Number.isFinite()</code>用来检查数值是否为有限的（finite），即不是Infinity。   <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">Number</span>.<span class="hljs-built_in">isFinite</span>(<span class="hljs-number">15</span>) <span class="hljs-regexp">//</span> <span class="hljs-literal">true</span><br><span class="hljs-built_in">Number</span>.<span class="hljs-built_in">isFinite</span>(<span class="hljs-number">0.8</span>) <span class="hljs-regexp">//</span> <span class="hljs-literal">true</span><br><span class="hljs-built_in">Number</span>.<span class="hljs-built_in">isFinite</span>(<span class="hljs-literal">NaN</span>) <span class="hljs-regexp">//</span> <span class="hljs-literal">false</span><br><span class="hljs-built_in">Number</span>.<span class="hljs-built_in">isFinite</span>(<span class="hljs-literal">Infinity</span>) <span class="hljs-regexp">//</span> <span class="hljs-literal">false</span><br><span class="hljs-built_in">Number</span>.<span class="hljs-built_in">isFinite</span>(<span class="hljs-string">&#x27;foo&#x27;</span>) <span class="hljs-regexp">//</span> <span class="hljs-literal">false</span> 参数不是数值，一律返回<span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+   <code>Number.isNaN()</code> 用来检查一个值是否为NaN   <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">Number</span>.<span class="hljs-built_in">isNaN</span>(<span class="hljs-literal">NaN</span>) <span class="hljs-regexp">//</span> <span class="hljs-literal">true</span><br><span class="hljs-built_in">Number</span>.<span class="hljs-built_in">isNaN</span>(<span class="hljs-number">15</span>) <span class="hljs-regexp">//</span> <span class="hljs-literal">false</span><br><span class="hljs-built_in">Number</span>.<span class="hljs-built_in">isNaN</span>(<span class="hljs-string">&#x27;15&#x27;</span>) <span class="hljs-regexp">//</span> <span class="hljs-literal">false</span> 参数类型不是<span class="hljs-literal">NaN</span> 一律返回<span class="hljs-literal">false</span>   <br></code></pre></td></tr></table></figure></li>
+<li>3、Number.parseInt()、Number.paresFloat()<br>   Es6将全局方法parseInt和paresFloat，移植到Number对象上面，行为完全保持不变</li>
+<li>4、Number.isInteger()<br>   <code>Number.isInteger()</code> 用来判断一个数值是否为整数   <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Number</span>.</span></span>is<span class="hljs-constructor">Integer(25)</span> <span class="hljs-comment">// true</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Number</span>.</span></span>is<span class="hljs-constructor">Integer(25.1)</span> <span class="hljs-comment">// false</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Number</span>.</span></span>is<span class="hljs-constructor">Integer(25.0)</span> <span class="hljs-comment">// true</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Number</span>.</span></span>is<span class="hljs-constructor">Integer(&#x27;15&#x27;)</span> <span class="hljs-comment">// false 参数不是数值 返回false</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Number</span>.</span></span>is<span class="hljs-constructor">Integer(25.0)</span> <span class="hljs-comment">// true</span><br><br></code></pre></td></tr></table></figure></li>
+<li>5、number.EPSILON<br>   es6在Number对象上面，新增一个极小的常量Number.EPSILON。根据规定它表示1与大于1的最小浮点数之间的差。</li>
+<li>6、安全整数和Number.isSafeInteger()<br>   javaScript能够准确表示整数范围在-2^53到2^53之间（不含两个端点）， 超过这个范围，无法精确表示这个值。<br>   <code>Number.isSafeInteger()</code>则是用来判断一个整数是否落在这个范围之内</li>
+<li>7、Math对象的扩展</li>
+<li>8、指数运算符<br>   ES2016 新增落一个指数运算符（**）。   <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">2 </span>** <span class="hljs-number">2</span> // <span class="hljs-number">4</span><br><span class="hljs-symbol">2 </span>** <span class="hljs-number">3</span> // <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+   这个运算符的一个特点是右结右，多个指数运算符连用时，是从最右边开始计算的   <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 相当于 <span class="hljs-number">2</span> ** （<span class="hljs-number">3</span> ** <span class="hljs-number">2</span>）<br><span class="hljs-number">2</span> ** <span class="hljs-number">3</span> ** <span class="hljs-number">2</span><br><span class="hljs-regexp">//</span> <span class="hljs-number">512</span><br></code></pre></td></tr></table></figure>
+   指数运算符可以与等号结合，形成一个新的运算符（**&#x3D;）   <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs abnf">let a <span class="hljs-operator">=</span> <span class="hljs-number">1.5</span><br>a **<span class="hljs-operator">=</span> <span class="hljs-number">2</span><br>// 等同于 a <span class="hljs-operator">=</span> a * a<span class="hljs-comment">;</span><br>let b <span class="hljs-operator">=</span> <span class="hljs-number">4</span><span class="hljs-comment">;</span><br>b **<span class="hljs-operator">=</span> <span class="hljs-number">3</span><span class="hljs-comment">;</span><br>// 等同于 b <span class="hljs-operator">=</span> b * b * b<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
+<li>10、BigInt对象</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2020/08/18/ES6ES7ES8/" title="ES6ES7ES8" target="_blank" rel="external">http://example.com/2020/08/18/ES6ES7ES8/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/08/24/mac%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" title="mac笔记本的基本命令"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/08/16/html5%E5%88%B0%E5%BA%95%E6%96%B0%E5%A2%9E%E4%BA%86%E4%BB%80%E4%B9%88/" title="html5 到底新增了什么"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
