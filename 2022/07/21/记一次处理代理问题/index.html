@@ -17,21 +17,20 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>webSocket用法 | Hexo</title>
-  <meta name="description" content="在长时间连接，没有通讯时，实际情况可能会出现断连，所以要设置心跳包 12345678910111213141516171819202122232425262728293031initSocket() &amp;#123; &#x2F;&#x2F; 初始化webSocket    let url &#x3D; &#96;ws:&#x2F;&#x2F;xxxxxxx&#96;;    this.webSocket &#x3D; new WebSocket(url)    this.w">
+  <title>记一次处理代理问题 | Hexo</title>
+  <meta name="description" content="记一次处理前端代理问题背景跟后端联调，后端本地起服务。 前端接口代理到后端本地ip。  问题本地调用接口报500 直接放到浏览器或postMan请求可以获取到数据  分析1、觉得是本地代理不成功，配置其他服务代理测试可以。 2、猜测后端服务问题，后端本地调用没问题， 3、***前端项目直接使用axios请求接口，可以正常调用。查看本地请求封装文件。  总结1、前端封装请求文件，在拦截器header">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webSocket用法">
-<meta property="og:url" content="http://example.com/2019/12/16/webSocket%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:title" content="记一次处理代理问题">
+<meta property="og:url" content="http://example.com/2022/07/21/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%84%E7%90%86%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在长时间连接，没有通讯时，实际情况可能会出现断连，所以要设置心跳包 12345678910111213141516171819202122232425262728293031initSocket() &amp;#123; &#x2F;&#x2F; 初始化webSocket    let url &#x3D; &#96;ws:&#x2F;&#x2F;xxxxxxx&#96;;    this.webSocket &#x3D; new WebSocket(url)    this.w">
+<meta property="og:description" content="记一次处理前端代理问题背景跟后端联调，后端本地起服务。 前端接口代理到后端本地ip。  问题本地调用接口报500 直接放到浏览器或postMan请求可以获取到数据  分析1、觉得是本地代理不成功，配置其他服务代理测试可以。 2、猜测后端服务问题，后端本地调用没问题， 3、***前端项目直接使用axios请求接口，可以正常调用。查看本地请求封装文件。  总结1、前端封装请求文件，在拦截器header">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-16T01:48:27.000Z">
-<meta property="article:modified_time" content="2019-12-16T01:53:30.000Z">
+<meta property="article:published_time" content="2022-07-21T14:45:23.000Z">
+<meta property="article:modified_time" content="2022-07-21T14:56:33.095Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="webSocket">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/2019/12/16/webSocket%E7%94%A8%E6%B3%95/index.html">
+  <link rel="canonical" href="http://example.com/2022/07/21/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%84%E7%90%86%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -346,25 +345,16 @@
 
   
   
-  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <nav id="toc" class="article-toc">
-      <h3 class="toc-title">文章目录</h3>
-      
-    </nav>
-  </div>
-</aside>
-
 <main class="main" role="main">
   <div class="content">
-  <article id="webSocket-webSocket用法" class="article article-type-webSocket" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-记一次处理代理问题" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      webSocket用法
+      记一次处理代理问题
     </h1>
   
 
@@ -372,33 +362,35 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/12/16/webSocket%E7%94%A8%E6%B3%95/" class="article-date">
-	  <time datetime="2019-12-16T01:48:27.000Z" itemprop="datePublished">2019-12-16</time>
+	<a href="/2022/07/21/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%84%E7%90%86%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/" class="article-date">
+	  <time datetime="2022-07-21T14:45:23.000Z" itemprop="datePublished">2022-07-21</time>
 	</a>
 </span>
         
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E6%8A%80%E5%B7%A7/">技巧</a>
-  </span>
-
         
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/webSocket/" rel="tag">webSocket</a>
-  </span>
-
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/16/webSocket%E7%94%A8%E6%B3%95/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/07/21/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%84%E7%90%86%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p><strong>在长时间连接，没有通讯时，实际情况可能会出现断连，所以要设置心跳包</strong></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">initSocket() &#123; <span class="hljs-comment">// 初始化webSocket</span><br>    let url = `ws:<span class="hljs-comment">//xxxxxxx`;</span><br>    <span class="hljs-keyword">this</span>.webSocket = new WebSocket(url)<br>    <span class="hljs-keyword">this</span>.webSocket.onopen = <span class="hljs-keyword">this</span>.webSocketOnOpen<br>    <span class="hljs-keyword">this</span>.webSocket.onclose = <span class="hljs-keyword">this</span>.webSocketOnClose<br>    <span class="hljs-keyword">this</span>.webSocket.onmessage = <span class="hljs-keyword">this</span>.webSocketOnMessage<br>    <span class="hljs-keyword">this</span>.webSocket.onerror = <span class="hljs-keyword">this</span>.webSocketOnError<br>&#125;,<br>webSocketOnOpen() &#123; <span class="hljs-comment">// 连接成功</span><br>    Notification.success(<span class="hljs-string">&quot;已连接，等待接入。&quot;</span>)<br>    console.log(<span class="hljs-string">&#x27;websocket连接成功&#x27;</span>);<br>    <span class="hljs-keyword">this</span>.webHeart = setInterval(()=&gt;&#123; <span class="hljs-comment">// webSoket 心跳包</span><br>        <span class="hljs-keyword">this</span>.webSocket.send(<span class="hljs-string">&quot;心跳包&quot;</span>);<br>    &#125;,<span class="hljs-number">60000</span>)<br>&#125;,<br>webSocketOnMessage(res) &#123; <span class="hljs-comment">// 等待接收数据 </span><br>    console.log(<span class="hljs-string">&#x27;===res=================================&#x27;</span>);<br>    console.log(res);<br>    console.log(<span class="hljs-string">&#x27;====================================&#x27;</span>);<br>&#125;,<br>webSocketOnClose() &#123;  <span class="hljs-comment">// 连接关闭</span><br>    <span class="hljs-keyword">this</span>.socketClose = <span class="hljs-literal">true</span>;<br>    clearInterval(<span class="hljs-keyword">this</span>.webHeart); <span class="hljs-comment">// 清除心跳包</span><br>    console.log(<span class="hljs-string">&#x27;websocket连接已关闭&#x27;</span>);<br>&#125;,<br>webSocketOnError(res) &#123; <span class="hljs-comment">// 连接失败</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.webHeart)&#123;<br>        clearInterval(<span class="hljs-keyword">this</span>.webHeart); <span class="hljs-comment">// 清除心跳包</span><br>    &#125;;<br>    console.log(<span class="hljs-string">&#x27;websocket连接失败&#x27;</span>);<br>&#125;,<br></code></pre></td></tr></table></figure>
+        <h2 id="记一次处理前端代理问题"><a href="#记一次处理前端代理问题" class="headerlink" title="记一次处理前端代理问题"></a>记一次处理前端代理问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><pre><code>跟后端联调，后端本地起服务。
+前端接口代理到后端本地ip。
+</code></pre>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><pre><code>本地调用接口报500
+直接放到浏览器或postMan请求可以获取到数据
+</code></pre>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><pre><code>1、觉得是本地代理不成功，配置其他服务代理测试可以。
+2、猜测后端服务问题，后端本地调用没问题，
+3、***前端项目直接使用axios请求接口，可以正常调用。查看本地请求封装文件。
+</code></pre>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><pre><code>1、前端封装请求文件，在拦截器headers中增加了自定义token，后端服务未对token属性进行适配，导致服务失败。
+2、在出现问题时，应该早点对比正常和有问题的地方。
+3、解决不了的时候，要早点出去转一圈，换换脑子。
+</code></pre>
 
       
     </div>
@@ -408,7 +400,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2019/12/16/webSocket%E7%94%A8%E6%B3%95/" title="webSocket用法" target="_blank" rel="external">http://example.com/2019/12/16/webSocket用法/</a>
+      <a href="http://example.com/2022/07/21/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%A4%84%E7%90%86%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/" title="记一次处理代理问题" target="_blank" rel="external">http://example.com/2022/07/21/记一次处理代理问题/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -454,23 +446,11 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/12/26/%E5%AE%9E%E7%8E%B0%E8%A7%86%E9%A2%91%E9%80%9A%E8%AF%9D%E5%8F%8A%E8%B0%83%E8%AF%95/" title="(Web)vue+声网-实现视频通话及调试"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/12/13/webSocket%E5%92%8Chttps%E7%9A%84%E9%97%AE%E9%A2%98/" title="webSocket和https的问题"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2022/07/20/%E5%86%8D%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%AA/" title="再测试一个"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
-    
-    <li class="toggle-toc">
-      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
-        <i class="text-collapsed icon icon-anchor"></i>
-        <i class="text-in icon icon-close"></i>
-        <span>]</span>
-      </a>
-    </li>
     
   </ul>
   
