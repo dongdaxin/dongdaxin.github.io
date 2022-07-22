@@ -17,7 +17,7 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>(Web)vue+声网-实现视频通话及调试 | Hexo</title>
+  <title>(Web)vue+声网-实现视频通话及调试 | 董新的博客</title>
   <meta name="description" content="都是官方文档，仅供我自己巩固 1、准出 有个项目 vue(别的项目也行 react啥的) 注册声网，在控制台创建个应用获取 appID(必须)  2、开始创建 这段代码是视频的时候，会将视频插入的dom，可以把这段dom放到你要视频的页面中； videoIdList 这个变量是我自己定义的，主要是存放远端视频（别人的视频）的id local_stream 这个元素id是我要插入本地视频的地方，也可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="(Web)vue+声网-实现视频通话及调试">
@@ -59,9 +59,9 @@
         <a id="avatar" href="https://github.com/cofess" target="_blank">
           <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
         </a>
-        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
-        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
-        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+        <h2 id="name" class="hidden-xs hidden-sm">董新</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">web前端工程师 &amp; 颓废患者</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> 大沈阳</small>
       </div>
       
       <div class="search" id="search-form-wrap">
@@ -97,7 +97,7 @@
       </button>
     </div>
     <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-      <ul class="nav navbar-nav main-nav ">
+      <ul class="nav navbar-nav main-nav menu-highlight">
         
         
         <li class="menu-item menu-item-home">
@@ -188,12 +188,6 @@
         
         <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
         
-        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
-        
-        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
-        
-        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
-        
     </ul>
 
     </nav>
@@ -209,7 +203,7 @@
     <div class="widget-body">
         <div id="board">
             <div class="content">
-                <p>欢迎交流与分享经验!</p>
+                <p>正在持续更新中!</p>
             </div>
         </div>
     </div>
@@ -347,15 +341,6 @@
 
   
   
-  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <nav id="toc" class="article-toc">
-      <h3 class="toc-title">文章目录</h3>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%87%86%E5%87%BA"><span class="toc-number">1.</span> <span class="toc-text">1、准出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">2、开始创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AF%B9%E6%8E%A5%E5%A3%B0%E7%BD%91"><span class="toc-number">3.</span> <span class="toc-text">3、对接声网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%95%B4%E4%B8%AA%E5%A3%B0%E7%BD%91%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">4、整个声网的文件</span></a></li></ol>
-    </nav>
-  </div>
-</aside>
-
 <main class="main" role="main">
   <div class="content">
   <article id="vue-实现视频通话及调试" class="article article-type-vue" itemscope itemtype="http://schema.org/BlogPosting">
@@ -391,6 +376,13 @@
 
 
         
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
 
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/26/%E5%AE%9E%E7%8E%B0%E8%A7%86%E9%A2%91%E9%80%9A%E8%AF%9D%E5%8F%8A%E8%B0%83%E8%AF%95/#comments" class="article-comment-link">评论</a></span>
         
@@ -491,8 +483,8 @@
         </a>
       </div>
       <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
-        <div>个人简介。</div>
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">董新</span><small class="ml-1x">web前端工程师 &amp; 颓废患者</small></a></h3>
+        <div>玉树临风风流倜傥英俊潇洒才高八斗貌似潘安号称一朵梨花压海棠人送绰号玉面小飞龙的web前端工程师</div>
       </div>
     </figure>
   </div>
@@ -528,14 +520,6 @@
     </li>
     
     
-    <li class="toggle-toc">
-      <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">    <span>[&nbsp;</span><span>文章目录</span>
-        <i class="text-collapsed icon icon-anchor"></i>
-        <i class="text-in icon icon-close"></i>
-        <span>]</span>
-      </a>
-    </li>
-    
   </ul>
   
   
@@ -548,7 +532,7 @@
   
   <div class="bar-right">
     
-    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    <div class="share-component" data-sites="weibo,qq,wechat" data-mobile-sites="weibo,qq"></div>
     
   </div>
   </div>
@@ -609,16 +593,12 @@
         
         <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
         
-        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
-        
-        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
-        
-        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
-        
     </ul>
 
     <div class="copyright">
     	
+        &copy; 2022 John Doe
+        
         <div class="publishby">
         	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
         </div>
@@ -660,6 +640,8 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 
 
 
@@ -678,9 +660,9 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     el: '#vcomments',
     verify: false,
     notify: false,
-    appId: '',
-    appKey: '',
-    placeholder: 'Just go go',
+    appId: 'smplbtXMHut9YRSo2UkyPWLz-gzGzoHsz',
+    appKey: 'XyuLzfFfxysCEkGs3QAFOgzK',
+    placeholder: '等待你的评论...',
     avatar: 'mm',
     meta: meta,
     pageSize: '10' || 10,
